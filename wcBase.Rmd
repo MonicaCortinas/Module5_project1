@@ -1,0 +1,67 @@
+---
+title: "Weather Preferences in the United States"
+subtitle: "Summary REport for the `r params$region`Region"
+author: "Monica Cortinas"
+date: "`r format(Sys.Date(), '%A, %B %d, %Y')`"
+output: html_document
+params:
+  region: 
+    label: "Region:"
+    value: Mountain
+    input: select
+    choices: ["East North Central","East South Central", "Middle Atlantic","Mountain", "New England", "Pacific","South Atlantic", "West North Central", "West South Central"]
+---
+
+```{r setup, include=FALSE}
+
+# define knitr options
+
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+
+# set any missing NAs in tables to blank
+options(knitr.kable.NA='')
+
+# load R packages
+library(fivethirtyeight)
+library(tidyverse)
+library(fivethirtyeight)
+library(knitr)
+library(kableExtra)
+library(ggthemes)
+
+# load weather dataset
+
+data("weather_check", package="fivethirtyeight")
+
+# create subset no missing NAs
+# pick a specific region
+sdat <- weather_check %>%
+      filter(region=="Mountain")
+```
+
+```{r child="text/BackgroundSection.Rmd"}
+
+```
+
+
+```{r child="text/PurposeSection.Rmd"}
+
+```
+
+
+```{r makeTable, code=readLines("code/maketable.R")}
+
+```
+
+```{r}
+knitr::read_chunk("code/maketable.R")
+```
+
+
+## Weather Source Preference by Gender
+
+Finally, here is a breakdown of the `r nrow(sdat)` survey respondents for the `r params$region` region of the US on how they check their daily weather by gender.
+
+
