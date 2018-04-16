@@ -1,4 +1,4 @@
-## @knitr makecharts
+## @knitr makeCharts
 
 
 library(stringr)

@@ -3,7 +3,9 @@ title: "Weather Preferences in the United States"
 subtitle: "Summary Report for the `r params$region`Region"
 author: "Monica Cortinas"
 date: "`r format(Sys.Date(), '%A, %B %d, %Y')`"
-output: html_document
+output: 
+  slidy_presentation:
+    logo: images/sunstar.png
 params:
   region: 
     label: "Region:"
@@ -12,13 +14,10 @@ params:
     choices: ["East North Central","East South Central", "Middle Atlantic","Mountain", "New England", "Pacific","South Atlantic", "West North Central", "West South Central"]
 ---
 
-<center><hr>
-![](images/sunstar.png){width=50}
-![](images/sunstar.png){width=50}
-![](images/sunstar.png){width=50}
-![](images/sunstar.png){width=50}
-![](images/sunstar.png){width=50}
-<hr></center>
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE }
 knitr::read_chunk("code/setup.R")
@@ -54,9 +53,3 @@ knitr::read_chunk("code/makeplot.R")
 ```{r makeCharts, echo=TRUE}
 
 ```
-
-## Weather Source Preference by Gender
-
-Finally, here is a breakdown of the `r nrow(sdat)` survey respondents for the `r params$region` region of the US on how they check their daily weather by gender.
-
-
